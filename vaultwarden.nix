@@ -12,6 +12,14 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      nss.tools
+    ];
+
+    security.pki.certificateFiles = [
+      "/var/lib/caddy/.local/share/caddy/pki/authorities/local/root.crt"
+    ];
+
     services.vaultwarden = {
       enable = true;
       dbBackend = "sqlite";
@@ -26,9 +34,6 @@ in {
 
     services.caddy = {
       enable = true;
-      globalConfig = ''
-        skip_install_trust
-      '';
       virtualHosts."${cfg.domain}".extraConfig = ''
         tls internal
         reverse_proxy localhost:8222
