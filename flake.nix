@@ -5,16 +5,11 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
   };
 
-  outputs = { self, nixpkgs, ... }: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./configuration.nix
-        ./hardware-configuration.nix
-        ./nix-mineral.nix
-        ./vaultwarden.nix
-        ./fwknop.nix
-      ];
+  outputs = { self, ... }: {
+    nixosModules = {
+      vaultwarden = ./vaultwarden.nix;
+      fwknop = ./fwknop.nix;
+      mineral = ./nix-mineral.nix;
     };
   };
 }
