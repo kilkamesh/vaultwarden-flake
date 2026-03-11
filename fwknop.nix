@@ -15,8 +15,8 @@ in {
       enable = true;
       settings.PCAP_INTF = cfg.interface;
       access."default" = {
-        KEY_ASCII = cfg.key;
-        HMAC_KEY_ASCII = cfg.hmacKey;
+        KEY_BASE64 = cfg.key;
+        HMAC_KEY_BASE64 = cfg.hmacKey;
         SOURCE = "ANY";
         OPEN_PORTS = "tcp/22,tcp/443";
         FW_ACCESS_TIMEOUT = 30;
