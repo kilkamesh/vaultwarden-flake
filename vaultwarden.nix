@@ -16,10 +16,6 @@ in {
       nss.tools
     ];
 
-    security.pki.certificateFiles = [
-      "/var/lib/caddy/.local/share/caddy/pki/authorities/local/root.crt"
-    ];
-
     services.vaultwarden = {
       enable = true;
       dbBackend = "sqlite";
