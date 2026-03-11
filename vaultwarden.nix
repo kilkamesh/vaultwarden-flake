@@ -27,11 +27,9 @@ in {
     services.caddy = {
       enable = true;
       globalConfig = ''
-        params {
-          pki {
-            ca local {
-              skip_install_trust
-            }
+        pki {
+          ca local {
+            skip_install_trust
           }
         }
       '';
