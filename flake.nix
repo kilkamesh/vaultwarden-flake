@@ -9,7 +9,7 @@
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        "/etc/nixos/configuration.nix"
+        ./configuration.nix
         ./hardware-configuration.nix
         ./nix-mineral.nix
         ./vaultwarden.nix
