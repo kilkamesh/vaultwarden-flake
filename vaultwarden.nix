@@ -33,5 +33,9 @@ in {
         reverse_proxy localhost:8222
       '';
     };
+    networking.firewall = {
+      enable = true;
+      allowedTCPPorts = [ 80 ];
+    };
   };
 }

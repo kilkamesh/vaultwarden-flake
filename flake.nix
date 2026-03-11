@@ -3,13 +3,14 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    wg.url = "github:kilkamesh/wireguard-flake";
   };
 
-  outputs = { self, ... }: {
+  outputs = { self, wg, ... }: {
     nixosModules = {
-      vaultwarden = ./vaultwarden.nix;
-      wg = ./wireguard.nix;
+      wg = wg.nixosModules.default; 
       mineral = ./nix-mineral.nix;
+      vaultwarden = ./vaultwarden.nix;
     };
   };
 }
