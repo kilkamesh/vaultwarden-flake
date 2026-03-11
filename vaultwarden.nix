@@ -27,15 +27,9 @@ in {
     services.caddy = {
       enable = true;
       virtualHosts."${cfg.domain}".extraConfig = ''
-        @blocked not remote_ip 10.100.0.0/24 127.0.0.1/8
-        respond @blocked "Access Denied" 403
-
+        tls internal
         reverse_proxy localhost:8222
       '';
-    };
-    networking.firewall = {
-      enable = true;
-      allowedTCPPorts = [ 80 ];
     };
   };
 }
