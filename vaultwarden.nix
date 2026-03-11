@@ -26,6 +26,15 @@ in {
 
     services.caddy = {
       enable = true;
+      globalConfig = ''
+        params {
+          pki {
+            ca local {
+              skip_install_trust
+            }
+          }
+        }
+      '';
       virtualHosts."${cfg.domain}".extraConfig = ''
         tls internal
         reverse_proxy localhost:8222
