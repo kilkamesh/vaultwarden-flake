@@ -16,7 +16,7 @@
 
       peers =[
         {
-          publicKey = lib.removeSuffix "\n" (builtins.readFile /var/lib/wireguard/client_public.key);
+          publicKey = lib.removeSuffix "\n" (builtins.readFile /var/lib/wireguard/public.key);
           allowedIPs =[ "10.100.0.2/32" ];
         }
       ];
