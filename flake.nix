@@ -9,7 +9,7 @@
     nixosConfigurations.vps-hostname = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./configuration.nix
+        "/etc/nixos/configuration.nix"
         ./hardware-configuration.nix
         ./nix-mineral.nix
         ./vaultwarden.nix
