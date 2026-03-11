@@ -15,7 +15,7 @@ in {
     services.vaultwarden = {
       enable = true;
       dbBackend = "sqlite";
-      backupDir = "/var/lib/vaultwarden/backups";
+      backupDir = "/var/backup/vaultwarden"; 
       config = {
         DOMAIN = "https://${cfg.domain}";
         SIGNUPS_ALLOWED = false;
