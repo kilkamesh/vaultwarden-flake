@@ -11,6 +11,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    environment.systemPackages = [ pkgs.fwknop ];
     services.fwknop = {
       enable = true;
       settings.PCAP_INTF = cfg.interface;
