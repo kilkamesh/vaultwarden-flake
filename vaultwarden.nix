@@ -1,22 +1,35 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
-  domain = "pass.your-domain.la"; 
+  # Читаем домен из наших настроек
+  cfg = config.services.myVaultwarden;
 in {
-  services.vaultwarden = {
-    enable = true;
-    dbBackend = "sqlite";
-    config = {
-      DOMAIN = "https://${domain}";
-      SIGNUPS_ALLOWED = false;
-      ROCKET_PORT = 8222;
+  options.services.myVaultwarden = {
+    enable = lib.mkEnableOption "Vaultwarden service";
+    domain = lib.mkOption { 
+      type = lib.types.str; 
+      default = "example.com";
     };
   };
 
-  services.caddy = {
-    enable = true;
-    virtualHosts."${domain}".extraConfig = "reverse_proxy localhost:8222";
+  config = lib.mkIf cfg.enable {
+    services.vaultwarden = {
+      enable = true;
+      dbBackend = "sqlite";
+      backupDir = "/var/lib/vaultwarden/backups";
+      config = {
+        DOMAIN = "https://${cfg.domain}";
+        SIGNUPS_ALLOWED = false;
+        ROCKET_ADDRESS = "127.0.0.1";
+        ROCKET_PORT = 8222;
+      };
+    };
+
+    services.caddy = {
+      enable = true;
+      virtualHosts."${cfg.domain}".extraConfig = ''
+        reverse_proxy localhost:8222
+      '';
+    };
   };
-  
-  networking.firewall.allowedTCPPorts =; 
 }
