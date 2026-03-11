@@ -32,6 +32,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1773110118,
+        "narHash": "sha256-mPAG8phMbCReKSiKAijjjd3v7uVcJOQ75gSjGJjt/Rk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "e607cb5360ff1234862ac9f8839522becb853bb9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
@@ -40,10 +56,7 @@
     },
     "sops-nix": {
       "inputs": {
-        "nixpkgs": [
-          "wg",
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1773096132,
@@ -65,11 +78,11 @@
         "sops-nix": "sops-nix"
       },
       "locked": {
-        "lastModified": 1773240795,
-        "narHash": "sha256-Af3/S8EW1UISSPjb4CpHT2DV6TP35FsYednOsUDfOoE=",
+        "lastModified": 1773241454,
+        "narHash": "sha256-jSBJlM0Ov2MOOS5o899fiNYXe5wjHVzFvRbiW93i6jk=",
         "owner": "kilkamesh",
         "repo": "wireguard-flake",
-        "rev": "ea2ea375e981d44d69047fc844e11dee3d9614fe",
+        "rev": "9abcb90520d333aec97ff824f1af58beb4a95cba",
         "type": "github"
       },
       "original": {
