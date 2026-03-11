@@ -1,14 +1,13 @@
 { config, lib, pkgs, ... }:
 
 let
-  # Читаем домен из наших настроек
   cfg = config.services.myVaultwarden;
 in {
   options.services.myVaultwarden = {
     enable = lib.mkEnableOption "Vaultwarden service";
     domain = lib.mkOption { 
       type = lib.types.str; 
-      default = "example.com";
+      default = "vault.example.com";
     };
   };
 
@@ -28,6 +27,9 @@ in {
     services.caddy = {
       enable = true;
       virtualHosts."${cfg.domain}".extraConfig = ''
+        @blocked not remote_ip 10.100.0.0/24 127.0.0.1/8
+        respond @blocked "Access Denied" 403
+
         reverse_proxy localhost:8222
       '';
     };

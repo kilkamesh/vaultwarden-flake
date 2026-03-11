@@ -8,7 +8,7 @@
   outputs = { self, ... }: {
     nixosModules = {
       vaultwarden = ./vaultwarden.nix;
-      fwknop = ./fwknop.nix;
+      wg = ./wireguard.nix;
       mineral = ./nix-mineral.nix;
     };
   };
